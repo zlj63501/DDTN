@@ -1,0 +1,43 @@
+# Dataset zoo defines resources for datasets
+# Each leaf in zoo config defines the parameters
+# to be passed to the mmf.utils.download.DownloadableFile's initialization
+# arguments. A configuration for a dataset can look like
+#
+# [dataset_key]:
+#     [variation]:
+#         version: [str]
+#         resources:
+#            features:
+#            - url:
+#              file_name:
+#              hashcode:
+#              compressed:
+#            - ...
+#            images:
+#            - ...
+#            annotations:
+#            - ...
+#            extras:
+#            - ...
+#
+# Now, if multiple variations are defined then zoo builder will look for zoo_key
+# defined while initialization or it will look for the "defaults" key
+#
+# It is necessary to have "version" and "resources" key on the leaf.
+#
+# "version" key defines the version we are trying to download and it is
+# needed to update files in case something is updated in the dataset.
+#
+# "resources" node can contain selective categories such as "features", "images" etc.
+# which can be used by your dataset or MMFDatasetBuilder to selectively load files
+# based on some conditions.
+#
+# Otherwise, a list can directly be returned under the "resources" node,
+# each of which  will be passed to DownloadableFile class and will be
+# initialized in build method of the MMFDatasetBuilder
+
+
+
+
+
+

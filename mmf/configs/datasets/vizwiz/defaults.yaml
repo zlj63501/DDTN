@@ -1,0 +1,69 @@
+dataset_config:
+  vizwiz:
+      data_dir: ./data
+      depth_first: false
+      use_images: false
+      use_features: True
+      use_grid_features: True
+      num_ray: 30
+      num_bin: 1000
+      mapping: relative
+      shuffle_fraction: -1
+      features:
+          train:
+            - ./data/features/train
+          val:
+            - ./data/features/val
+          test:
+            - ./data/features/test
+
+      images:
+          train:
+            - ./data/images/train
+          val:
+            - ./data/images/val
+          test:
+            - ./data/images/test
+      annotations:
+          train:
+          - ./data/annotations/train.npy
+          val:
+          - ./data/annotations/val.npy
+          test:
+          - ./data/annotations/test.npy
+      processors:
+        text_processor:
+          type: vocab
+          params:
+            max_length: 14
+            vocab:
+              type: intersected
+              embedding_name: glove.6B.300d
+              vocab_file: ./data/annotations/vocabulary_100k.txt
+            preprocessor:
+              type: simple_sentence
+              params: {}
+        answer_processor:
+          type: vqa_answer
+          params:
+            vocab_file: ./data/annotations/answers.txt
+            preprocessor:
+              type: simple_word
+              params: {}
+            num_answers: 10
+        context_processor:
+          type: fasttext
+          params:
+            max_length: 50
+            model_file: wiki.en.bin
+        ocr_token_processor:
+          type: simple_word
+          params: {}
+        bbox_processor:
+          type: bbox
+          params:
+            max_length: 50
+      return_features_info: true
+      use_ocr: false
+      use_ocr_info: false
+

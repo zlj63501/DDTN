@@ -1,0 +1,56 @@
+evaluation:
+  metrics:
+  - vqa_accuracy
+  - seg_accuracy
+
+model_config:
+  ddtn:
+    model_data_dir: /media/user/088A16F4085A16F4/
+    losses:
+      - type: logit_bce
+      - type: label_smooth_cross_entropy
+        params:
+          neg_factor: 0
+          num_bin: 1000
+
+    classifier:
+      type: twin_linear
+      params:
+        num_bin: 1000
+
+    image_feature_embeddings:
+      type: loc_vqa_element_multiply
+      params:
+        mapping: relative
+        num_bin: 1000
+        num_ray: 30
+        fve_num_layers: 3
+        batch_first: True
+        hidden_dim: 256
+        num_layers: 2
+        out_dim: 256
+        num_attn: 4
+        dropout: 0
+
+    image_feature_dim: 2048
+    image_feature_encodings:
+      type: resnet_head
+      params:
+        WEIGHTS_FILE: ./weights/resnet_head.pth
+        NUM_GROUPS: 32
+        WIDTH_PER_GROUP: 8
+        STRIDE_IN_1X1: False
+        RES2_OUT_CHANNELS: 256
+        RES5_DILATION: 1
+
+    text_embeddings:
+      type: mcan
+      params:
+        hidden_dim: 256
+        embedding_dim: 300
+        num_attn: 4
+        dropout: 0
+        num_layers: 2
+        num_attn_pool: 1
+        num_feat: 2
+        model_data_dir: ${model_config.ddtn.model_data_dir}
