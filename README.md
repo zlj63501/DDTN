@@ -83,4 +83,4 @@ author = {Liangjun Zhu and Li Peng and Weinan Zhou and Jielong Yang}
 
 ## Acknowledgement
 
-Our code is built upon the open-sourced [MMF](https://github.com/facebookresearch/mmf) and [VinVl](https://github.com/pzzhang/VinVL) libraries. 
+Our code is built upon the open-sourced [MMF](https://github.com/facebookresearch/mmf), [SeqTR](https://github.com/sean-zhuh/SeqTR) and [VinVl](https://github.com/pzzhang/VinVL) libraries. 

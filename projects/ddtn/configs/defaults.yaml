@@ -1,0 +1,39 @@
+optimizer:
+  type: adam_w
+  params:
+    lr:  0.0001
+    weight_decay: 0
+    eps: 1e-09
+    betas:
+    - 0.9
+    - 0.98
+
+scheduler:
+  type: multi_step
+  params:
+    use_warmup: false
+    lr_steps:
+      - 6000
+    lr_ratio: 0.1
+    warmup_iterations: 2000
+    warmup_factor: 0.25
+
+training:
+  seed: 42
+  lr_scheduler: true
+  log_interval: 100
+  checkpoint_interval: 1000
+  evaluation_interval: 1000
+  clip_norm_mode: all
+  clip_gradients: false
+  max_grad_l2_norm: 5
+  max_updates: 7000
+  batch_size: 32
+  num_workers: 10
+  task_size_proportional_sampling: true
+  encoder_lr_multiply: 1
+  early_stop:
+    criteria: vizwiz/seg_accuracy/mask_acc
+    minimize: false
+
+
