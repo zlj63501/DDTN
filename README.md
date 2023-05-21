@@ -62,7 +62,7 @@ python mmf_cli/run.py config=projects/ddtn/configs/defaults.yaml run_type=train_
 
 ## Evaluation
 ```
-python mmf_cli/run.py config=projects/fve_loc/configs/defaults.yaml run_type=val dataset=vizwiz model=ddtn checkpoint.resume_file=save/models/xxx.ckpt
+python mmf_cli/run.py config=projects/ddtn/configs/defaults.yaml run_type=val dataset=vizwiz model=ddtn checkpoint.resume_file=save/models/xxx.ckpt
 ```
 
 ## Citation
